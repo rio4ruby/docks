@@ -1,0 +1,12 @@
+#!/bin/bash
+envfile=$(dirname $(readlink -f $0))/.env
+if [ -f $envfile ]; then
+    source $envfile
+fi
+
+docker run \
+       --name $name \
+       -e MYSQL_ROOT_PASSWORD=$passwd \
+       --mount type=bind,source=$datadir,target=/docker-entrypoint-initdb.d \
+       -d $image:$tag
+

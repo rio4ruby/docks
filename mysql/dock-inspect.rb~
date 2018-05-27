@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-
-require 'json'
-
-hsh = JSON.parse(`docker inspect skywalker`)
-p hsh

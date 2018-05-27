@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Requires that jq be installed
+# ubuntu: sudo apt install jq
+
+docker_container=$1
+if [ ! -n "$1" ]; then
+  >&2 echo "Usage $0 docker_container"
+  exit 1
+fi
+  
+ans=`docker inspect $docker_container | jq '.[0]["NetworkSettings"]["IPAddress"]'`
+echo ${ans//\"/}
+

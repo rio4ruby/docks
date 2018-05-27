@@ -1,0 +1,9 @@
+#!/bin/bash
+envfile=$(dirname $(readlink -f $0))/.env
+if [ -f $envfile ]; then
+    source $envfile
+fi
+
+$dockdir/stop
+docker rmi $image:$tag
+
